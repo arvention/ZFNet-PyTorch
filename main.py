@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
     # training settings
     parser.add_argument('--num_epochs', type=int, default=70)
-    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--pretrained_model', type=str, default=None)
 
     # misc
