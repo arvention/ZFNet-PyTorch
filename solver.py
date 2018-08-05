@@ -6,8 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.optim.lr_scheduler as lr_scheduler
 from tqdm import tqdm
-from utils import *
-from data_loader import get_loader
+from utils import to_var
 
 from model import ZFNet
 
