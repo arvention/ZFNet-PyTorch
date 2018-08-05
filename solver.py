@@ -225,7 +225,7 @@ class Solver(object):
             _, top_1_output = torch.max(output.data, dim=1)
 
             top_1_correct += torch.sum(torch.eq(labels.squeeze(),
-                                       top_1_output))
+                                                top_1_output))
 
             # top 5
             _, top_5_output = torch.topk(output.data, k=5, dim=1)
