@@ -7,8 +7,7 @@ from torchvision import transforms
 
 class Caltech256Dataset(Dataset):
 
-    def __init__(self,
-                 data_path, x_key, y_key):
+    def __init__(self, data_path, x_key, y_key):
         """
         Initialize dataset
         """
@@ -37,8 +36,7 @@ class Caltech256Dataset(Dataset):
         return self.transform(image), torch.from_numpy(label).long()
 
 
-def get_loader(data_path, x_key, y_key,
-               batch_size, mode='train'):
+def get_loader(data_path, x_key, y_key, batch_size, mode='train'):
     dataset = Caltech256Dataset(data_path, x_key, y_key)
 
     shuffle = False
