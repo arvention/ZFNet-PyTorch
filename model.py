@@ -5,11 +5,7 @@ class ZFNet(nn.Module):
 
     """Original ZFNET Architecture"""
 
-    def __init__(
-        self,
-        channels,
-        class_count
-    ):
+    def __init__(self, channels, class_count):
         super(ZFNet, self).__init__()
         self.channels = channels
         self.class_count = class_count
