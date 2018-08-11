@@ -79,8 +79,7 @@ if __name__ == '__main__':
     parser.add_argument('--mode', type=str, default='train',
                         choices=['train', 'test'])
     parser.add_argument('--use_gpu', type=str2bool, default=True)
-    parser.add_argument('--use_tensorboard', type=str2bool,
-                        default=True)
+    parser.add_argument('--use_tensorboard', type=str2bool, default=True)
 
     # dataset
     parser.add_argument('--data_path', type=str,
