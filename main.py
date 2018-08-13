@@ -64,13 +64,13 @@ if __name__ == '__main__':
     torch.set_printoptions(threshold=np.nan)
     parser = argparse.ArgumentParser()
 
-    # model hyper-parameters
-    parser.add_argument('--lr', type=float, default=0.01)
-    parser.add_argument('--momentum', type=float, default=0.9)
+    # dataset info
     parser.add_argument('--input_channels', type=int, default=3)
     parser.add_argument('--class_count', type=int, default=256)
 
     # training settings
+    parser.add_argument('--lr', type=float, default=0.01)
+    parser.add_argument('--momentum', type=float, default=0.9)
     parser.add_argument('--num_epochs', type=int, default=70)
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--pretrained_model', type=str, default=None)
