@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 
 
-class Caltech256Dataset(Dataset):
+class Hdf5Dataset(Dataset):
 
     def __init__(self, data_path, x_key, y_key):
         """
@@ -37,7 +37,7 @@ class Caltech256Dataset(Dataset):
 
 
 def get_loader(data_path, x_key, y_key, batch_size, mode='train'):
-    dataset = Caltech256Dataset(data_path, x_key, y_key)
+    dataset = Hdf5Dataset(data_path, x_key, y_key)
 
     shuffle = False
     if mode == 'train':
