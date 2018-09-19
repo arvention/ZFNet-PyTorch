@@ -106,6 +106,28 @@ class Solver(object):
         )
         torch.save(self.model.state_dict(), path)
 
+    def model_step(self, images, labels):
+
+        # set model in training mode
+        self.model.train()
+
+        # empty the gradients of the model through the optimizer
+        self.optimizer.zero_grad()
+
+        # forward pass
+        output = self.model(images)
+
+        # compute loss
+        loss = self.criterion(output, labels.squeeze())
+
+        # compute gradients using back propagation
+        loss.backward()
+
+        # update parameters
+        self.optimizer.step()
+
+        return loss
+
     def train(self):
         self.losses = []
         self.top_1_acc = []
@@ -164,47 +186,6 @@ class Solver(object):
         for e, acc in self.top_5_acc:
             print(e, '{:.4f}'.format(acc))
 
-    def model_step(self, images, labels):
-
-        # set model in training mode
-        self.model.train()
-
-        # empty the gradients of the model through the optimizer
-        self.optimizer.zero_grad()
-
-        # forward pass
-        output = self.model(images)
-
-        # compute loss
-        loss = self.criterion(output, labels.squeeze())
-
-        # compute gradients using back propagation
-        loss.backward()
-
-        # update parameters
-        self.optimizer.step()
-
-        return loss
-
-    def train_evaluate(self, e):
-        top_1_correct, top_5_correct, total = self.eval(self.data_loader)
-        log = "Epoch [{}/{}]--top_1_acc: {:.4f}--top_5_acc: {:.4f}".format(
-            e + 1,
-            self.num_epochs,
-            top_1_correct / total,
-            top_5_correct / total
-        )
-        print(log)
-        return top_1_correct / total, top_5_correct / total
-
-    def test(self):
-        top_1_correct, top_5_correct, total = self.eval(self.data_loader)
-        log = "top_1_acc: {:.4f}--top_5_acc: {:.4f}".format(
-            top_1_correct / total,
-            top_5_correct / total
-        )
-        print(log)
-
     def eval(self, data_loader):
 
         self.model.eval()
@@ -233,3 +214,22 @@ class Solver(object):
                 if label in top_5_output[i]:
                     top_5_correct += 1
         return top_1_correct.item(), top_5_correct, total
+
+    def train_evaluate(self, e):
+        top_1_correct, top_5_correct, total = self.eval(self.data_loader)
+        log = "Epoch [{}/{}]--top_1_acc: {:.4f}--top_5_acc: {:.4f}".format(
+            e + 1,
+            self.num_epochs,
+            top_1_correct / total,
+            top_5_correct / total
+        )
+        print(log)
+        return top_1_correct / total, top_5_correct / total
+
+    def test(self):
+        top_1_correct, top_5_correct, total = self.eval(self.data_loader)
+        log = "top_1_acc: {:.4f}--top_5_acc: {:.4f}".format(
+            top_1_correct / total,
+            top_5_correct / total
+        )
+        print(log)
