@@ -26,8 +26,8 @@ def save_config(config):
         for k, v in sorted(args.items()):
             f.write('%s: %s\n' % (str(k), str(v)))
 
-    zipf = zipfile.ZipFile(save_name.format(
-        current_time, "zip"), 'w', zipfile.ZIP_DEFLATED)
+    zipf = zipfile.ZipFile(save_name.format(current_time, "zip"),
+                           'w', zipfile.ZIP_DEFLATED)
     zipdir('.', zipf)
     zipf.close()
 
@@ -73,7 +73,8 @@ if __name__ == '__main__':
     parser.add_argument('--momentum', type=float, default=0.9)
     parser.add_argument('--num_epochs', type=int, default=70)
     parser.add_argument('--batch_size', type=int, default=128)
-    parser.add_argument('--pretrained_model', type=str, default=None)
+    parser.add_argument('--pretrained_model', type=str,
+                        default=None)
 
     # misc
     parser.add_argument('--mode', type=str, default='train',
@@ -82,14 +83,13 @@ if __name__ == '__main__':
     parser.add_argument('--use_tensorboard', type=str2bool, default=True)
 
     # dataset
-    parser.add_argument('--data_path', type=str,
-                        default='D:/Dataset/Caltech-256/data/')
+    parser.add_argument('--data_path', type=str, default='../../data/c256/')
     parser.add_argument('--train_data_path', type=str,
-                        default='caltech_256_60_train_nobg_norm.hdf5')
+                        default='caltech_256_30_train_nobg_norm.hdf5')
     parser.add_argument('--train_x_key', type=str, default='train_x')
     parser.add_argument('--train_y_key', type=str, default='train_y')
     parser.add_argument('--test_data_path', type=str,
-                        default='caltech_256_60_test_nobg_norm.hdf5')
+                        default='caltech_256_30_test_nobg_norm.hdf5')
     parser.add_argument('--test_x_key', type=str, default='test_x')
     parser.add_argument('--test_y_key', type=str, default='test_y')
 
