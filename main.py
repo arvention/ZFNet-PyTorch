@@ -44,9 +44,11 @@ def main(version, config):
 
     # create directories if not exist
     mkdir(config.log_path)
-    mkdir(config.model_save_path)
 
     if config.mode == 'train':
+        temp_save_path = os.path.join(config.model_save_path, version)
+        mkdir(temp_save_path)
+
         data_loader = get_loader(config.data_path + config.train_data_path,
                                  config.train_x_key, config.train_y_key,
                                  config.batch_size, config.mode)
